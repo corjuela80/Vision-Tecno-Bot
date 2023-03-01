@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./main.css">
+    <link rel="stylesheet" href="./css/bootstrap.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://live.zwidgets.com/js-sdk/1.0.5/ZohoEmbededAppSDK.min.js"></script>
+    
+</head>
+<body>
+    <div id="headerorder" style="display:none;">
+
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <div id="chat-container">
+                    <div id="chat-window">
+                        <div id="output">
+                            <div id="actions"></div>
+                        </div>
+                    </div>
+
+                </div>
+            
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Escribe un mensaje aquí" aria-label="Recipient's username" aria-describedby="button-addon2" id= "message" name = "message">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" id="send"><i class="fa fa-send"></i></button>
+                        <button class="btn btn-outline-secondary" type="button" id="send2"><i class="fa fa-handshake-o"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+
+    <!-- The Modal -->
+    <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">              
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+              <img src="" class="imagepreview" style="width: 100%;" >
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+ 
+    <script src="./controlzoho.js"></script>
+
+    <script type='text/javascript' src="./js/bootstrap.js" charset="utf-8"></script>
+    <script>
+
+        function abririmajen(img){
+            console.log(this.location.href);
+            $('.imagepreview').attr('src',img);
+            $('#imagemodal').modal('show');   
+        }
+    </script>
+
+</body>
+</html>
