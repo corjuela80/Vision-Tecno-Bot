@@ -647,6 +647,9 @@ app.post("/webhooks", (req, res) => {
               let wpp_id_asesor = null;
               let { TipoRespuesta } = DataBot;
 
+              console.log("***********************")
+              console.log(TipoRespuesta);
+
               createMessage({
 
                 Mensaje_client,
@@ -668,6 +671,9 @@ app.post("/webhooks", (req, res) => {
                 if (ResponseMessage.ok && TipoRespuesta) {
 
                   EnviarMessageBot(TipoRespuesta,num_cel,id_celular_asesor).then( async (ResponseMessageBot) => {
+
+                    console.log("----------------- || -------------")
+                    console.log(ResponseMessageBot)
 
                     const { IdMensajeBot, MensajeBot } = ResponseMessageBot;
 

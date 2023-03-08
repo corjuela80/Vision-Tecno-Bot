@@ -625,15 +625,6 @@ window.operateEvents = {
 
 
 
-
-
-
-
-
-
-
-
-
 //-------------- Mensaje entrante de un cliente ---------------
 
 socket.on("chat:MessageReceived", function (data) {

@@ -9,7 +9,7 @@ require("moment/locale/es");
 // ------------------- Variables de Meta -------------------
 const url_api = "https://graph.facebook.com/v14.0/";
 const whpp_key =
-  "Bearer EAALcs8ukVs0BAOZC4TWfTnKJodPE0zlgHcIc2WFwBYBtZAXAAHZC0ZBQR2ZCeOLnHvJ1mW2wxbS081UmIflChIwVZC3gvwnWMZBZA6aZBKOscCEw4wRNhLXbYRXXOU0M1WooHLsQulZBXcIqF9Q10XVjDSWO3g3wBZBVGzuapjtMEc7e677cpBDzs4b";
+  "Bearer EAALcs8ukVs0BAGMEyFnh26kiwLRAyyubT017kLd8ZA5N7uu8bhKG0eUcGgVfq1R43XigTzH02qucXLTAHJcvx7Ce7X859RlJ42e43GLVjRRxZCOhvdBZAAqkE3BD94AoBFoKI8ZAZAkLZBbeSBZBdDsj3hmlsRPqXXFOGBtndJZAz0zEWgKG8cIH";
 
 const MensajesBot = [
   {
@@ -715,6 +715,9 @@ const EnviarMessageBot = async (TipoRespuesta, num_cel, id_celular_asesor) => {
     (MensajeOjt) => MensajeOjt.Valor == TipoRespuesta
   );
 
+  console.log("categoria ->>> " + MensajeOjt.Categoria)
+  console.log(MensajeOjt.Mensaje);
+
   if (MensajeOjt.Categoria != "Confirmacion") {
     try {
       var data = JSON.stringify({
@@ -798,6 +801,9 @@ const EnviarMessageBot = async (TipoRespuesta, num_cel, id_celular_asesor) => {
  * @returns
  */
 const createMessageBot = async (infoMessage) => {
+
+  console.log(infoMessage)
+
   let {
     MensajeBot,
     fechaYhoraBot,
