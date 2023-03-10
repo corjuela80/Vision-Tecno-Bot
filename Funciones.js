@@ -383,7 +383,7 @@ const CrearCliente = async (
     params: [
       nombreCliente,
       numeroCliente,
-      moment().format("YYYY-MM-DD HH:mm:ss"),
+      moment().format("YYYY-MM-DD HH:mm:ss").utcOffset(-300),
       id_client_zoho,
       client_tipo,
     ],
@@ -552,7 +552,12 @@ const ValidarBot = async (fechaYHora, Mensaje_client, id_chat) => {
 
             const { horas_control } = responseMensajes[0];
 
-            let DiferenciaHoras = moment().diff(moment(wpp_fecha), "hours");
+            
+
+            const fechaYa = moment().utcOffset(-300).format('YYYY-MM-DD HH:mm:ss');
+
+            let DiferenciaHoras = moment(fechaYa).diff(moment(wpp_fecha), "hours");
+
 
             /**
              * Validamos si pasaron las horas del reinicio del bot
@@ -563,7 +568,6 @@ const ValidarBot = async (fechaYHora, Mensaje_client, id_chat) => {
                * Ya pasaron las horas especificadas volvemos a pedir el correo
                */
 
-              console.log("Pasaron: -> ", DiferenciaHoras, " Horas");
               msgInfo.whpp_msj_correo = 0;
               TipoRespuesta = 2;
             } else {
@@ -709,14 +713,11 @@ const createMessage = async (infoMessage) => {
  * @param {*} id_celular_asesor
  */
 const EnviarMessageBot = async (TipoRespuesta, num_cel, id_celular_asesor) => {
-  console.log("Respondiendo..");
+
 
   const [MensajeOjt] = MensajesBot.filter(
     (MensajeOjt) => MensajeOjt.Valor == TipoRespuesta
   );
-
-  console.log("categoria ->>> " + MensajeOjt.Categoria)
-  console.log(MensajeOjt.Mensaje);
 
   if (MensajeOjt.Categoria != "Confirmacion") {
     try {
@@ -801,8 +802,6 @@ const EnviarMessageBot = async (TipoRespuesta, num_cel, id_celular_asesor) => {
  * @returns
  */
 const createMessageBot = async (infoMessage) => {
-
-  console.log(infoMessage)
 
   let {
     MensajeBot,

@@ -1,7 +1,7 @@
 const socket = io();
 
 
-const UrlBase = "http://localhost:3000/";
+const UrlBase = "https://addapptech.com/";
 
 /**
  *
@@ -373,11 +373,13 @@ const ListarChats = async (id_chat) => {
     //$("#loader").empty()
 
     DataMessages.forEach((Mensaje) => {
-      //console.log("---- aro -------");
+      console.log("---- aro -------");
       let TipoMensaje;
       let FechaMensaje = Mensaje.wpp_fecha;
       let align;
-      FechaMensaje = moment(FechaMensaje).format("DD-MM-YYYY HH:mm a");
+      
+      FechaMensaje = FechaMensaje.replace("T", " ").replace(".000Z", "");
+      FechaMensaje = moment(FechaMensaje).format("DD-MM-YYYY HH:mm");
 
       if (Mensaje.wpp_id_asesor == null) {
         TipoMensaje = "myDIVblanco";

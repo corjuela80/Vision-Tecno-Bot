@@ -507,7 +507,11 @@ app.post("/webhooks", (req, res) => {
     const numcel_zoho = "+" + num_cel;
     const numcel_zoho_url = encodeURIComponent(numcel_zoho);
 
-    let fecha_msj = moment.unix(hora_msj_unix);
+    let fecha_msj = moment.unix(hora_msj_unix).utcOffset(-300);
+
+    console.log(fecha_msj)
+    console.log(hora_msj_unix)
+
     const hora_actula2 = fecha_msj.format("HH:mm");
     const fechaYHora = fecha_msj.format("YYYY-MM-DD HH:mm:ss");
 
@@ -643,12 +647,13 @@ app.post("/webhooks", (req, res) => {
 
             ValidarBot(fechaYHora,Mensaje_client,id_chat).then(async (DataBot) => {
 
+              console.log("**************")
+              console.log(DataBot)
+              console.log(DataBot.msgInfo)
+
               let { wpp_error,wpp_fuera_hora,whpp_msj_correo } = DataBot.msgInfo;
               let wpp_id_asesor = null;
               let { TipoRespuesta } = DataBot;
-
-              console.log("***********************")
-              console.log(TipoRespuesta);
 
               createMessage({
 
@@ -672,14 +677,12 @@ app.post("/webhooks", (req, res) => {
 
                   EnviarMessageBot(TipoRespuesta,num_cel,id_celular_asesor).then( async (ResponseMessageBot) => {
 
-                    console.log("----------------- || -------------")
-                    console.log(ResponseMessageBot)
-
                     const { IdMensajeBot, MensajeBot } = ResponseMessageBot;
 
-                    let fechaYhoraBot = moment().format('YYYY-MM-DD HH:mm:ss')
+                    let fechaYhoraBot = moment().utcOffset(-300).format('YYYY-MM-DD HH:mm:ss');
                     let wpp_id_asesor = 0;
 
+                    console.log("Fecha bot --> ", fechaYhoraBot)
 
                     let FechaHora = fechaYhoraBot;
                     let Menssage = MensajeBot;
